@@ -19,12 +19,14 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
+
     super.onInit();
 
   }
 
   Future<Employee?> loginEmployee({required unique_number, role}) async {
     final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
 
     var response = await http.post(Uri.parse('${MyApp.api}/api/Login_Other'),
         headers: {'Content-Type': 'application/json'},
@@ -37,9 +39,9 @@ class LoginController extends GetxController {
 
       prefs.setString('name', employee.name);
       prefs.setString('type', '2');
-      prefs.setString('id', employee.id);
-      prefs.setString('points', employee.points);
-      prefs.setString('task_count', employee.task_count);
+      prefs.setString('id', '${employee.id}');
+      prefs.setString('points', '${employee.points}');
+      prefs.setString('task_count', '${employee.task_count}');
       return this.employee;
     } else
       return null;
@@ -94,6 +96,7 @@ class LoginController extends GetxController {
 
   Future<Child?> loginParent({required unique_number})async{
     final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
 
     var response = await http.post(Uri.parse('${MyApp.api}/api/parent/login'),
         headers: {'Content-Type': 'application/json'},
@@ -109,11 +112,13 @@ class LoginController extends GetxController {
           age: employeeModel.data[0].age,
           infection: employeeModel.data[0].infection , section:employeeModel.data[0].section, phone_num: employeeModel.data[0].phone_num );
 
+
       prefs.setString('name', child.name);
       prefs.setString('type', '1');
       prefs.setString('id', '${child.id}');
       prefs.setString('infection', '${child.infection}');
       prefs.setString('section', '${child.section}');
+      prefs.setString('child_name', child.name);
 
       return this.child;
 

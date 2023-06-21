@@ -20,7 +20,7 @@ class AllEmployeeController extends GetxController{
   }
 
   Future<void>fetchAllEmplyees()async{
-    final response = await http.get(Uri.parse('${MyApp.api}/api/show_Employee')) ;
+    final response = await http.get(Uri.parse('${MyApp.api}/api/Employees/all')) ;
 
     if(response.statusCode == 200)
     {

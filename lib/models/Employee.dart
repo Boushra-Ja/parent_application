@@ -5,7 +5,7 @@ class Employee {
   factory Employee.fromJson(Map<String , dynamic> json)
   {
 
-    return Employee(id : json['id'] ,name: json['name'],unique_number: json['unique_number'] , points: json['points'] , task_count:json['count']);
+    return Employee(id : json['emp_id'] ,name: json['name'],unique_number: json['unique_number'] , points: json['points'] , task_count:json['count']);
   }
 
   Employee({required this.id , required this.name,required this.unique_number , required this.points , required this.task_count});

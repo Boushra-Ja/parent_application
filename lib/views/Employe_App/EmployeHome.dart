@@ -18,6 +18,7 @@ class EmployeHome extends GetView<HomeController> {
         child: DefaultTabController(
           length: 2,
           child: Scaffold(
+            backgroundColor: Themes.white,
             appBar: AppBar(
               actions: [
                 Padding(
@@ -25,7 +26,7 @@ class EmployeHome extends GetView<HomeController> {
                   child: IconButton(
                     icon: Icon(
                       Icons.notifications_active,
-                      color: Themes.orange,
+                      color: Colors.yellow,
                     ),
                     onPressed: () {
                       Get.to(NotificationPage()) ;
@@ -37,7 +38,7 @@ class EmployeHome extends GetView<HomeController> {
                   child: IconButton(
                     icon: Icon(
                       Icons.logout_outlined,
-                      color: Themes.orange,
+                      color: Colors.yellow,
                     ),
                     onPressed: () {
                       Get.off(WelcomePage());
@@ -50,7 +51,7 @@ class EmployeHome extends GetView<HomeController> {
                 child: TabBar(
                   indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(50), // Creates border
-                      color: Themes.orange),
+                      color: Themes.secondary.withOpacity(0.8)),
                   tabs: const [
                     Tab(
                       text: "مهامي",
@@ -66,18 +67,18 @@ class EmployeHome extends GetView<HomeController> {
                   children: [
                     CircleAvatar(
                       radius: 20,
-                      backgroundColor: Themes.orange,
+                      backgroundColor: Themes.secondary.withOpacity(0.8),
                       child: Icon(Icons.person , color: Colors.white,),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    Text("اسم الموظف")
+                    Text(sampleController1.name)
                   ],
                 ),
               ),
 
-              backgroundColor: Themes.blue,
+              backgroundColor: Themes.primary,
             ),
             body: TabBarView(
               children: [

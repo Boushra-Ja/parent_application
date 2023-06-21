@@ -20,6 +20,28 @@ class MyTask extends StatelessWidget{
               .reactive(),
         );
       }
+      if(controller.taskList.isEmpty)
+        {
+          return Center(
+            child: Column(
+              children: [
+                SizedBox(height: 20,),
+                Container(
+                  height:
+                  MediaQuery.of(context).size.height * 0.4,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('images/task.png'),
+                        fit: BoxFit.contain),
+                  ),
+                ),
+                Text(
+                  "لا يوجد مهام متاحة",
+                )
+              ],
+            ),
+          );
+        }
       return   ListView.builder(
           itemCount: controller.taskList.length,
           itemBuilder: (BuildContext context, int index) {
@@ -57,7 +79,8 @@ class MyTask extends StatelessWidget{
                       ],
                     ),
                     subtitle: Text(
-                        "${controller.taskList.elementAt(index).task_date}"
+                        "${controller.taskList.elementAt(index).task_date}",
+                      style: Themes.bodyline1,
                     ),
                     trailing:  Wrap(
                       spacing: 6, // space between two icons
@@ -127,14 +150,14 @@ class MyTask extends StatelessWidget{
                                                     ),
                                                     style: ElevatedButton.styleFrom(
                                                       minimumSize: const Size(0, 45),
-                                                      primary: Themes.blue,
+                                                      primary: Themes.secondary,
                                                       onPrimary: const Color(0xFFFFFFFF),
                                                       shape: RoundedRectangleBorder(
                                                         borderRadius: BorderRadius.circular(8),
                                                       ),
                                                     ),
                                                     onPressed: () {
-                                                      controller.terminate_task(controller.taskList.elementAt(index).num) ;
+                                                      controller.terminate_task(controller.taskList.elementAt(index).num , index) ;
                                                     },
                                                   ),
                                                 ),

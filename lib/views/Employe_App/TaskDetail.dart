@@ -14,21 +14,20 @@ class TaskDetail extends StatelessWidget{
       body: ListView(
         children: [
           SizedBox(height: 50,) ,
-          Center(child: CircleAvatar(child: Icon(Icons.task , color: Themes.orange, size: 40,), radius: 80 , backgroundColor: Themes.blue, )) ,
-          SizedBox(height: 20,) ,
-          Center(child: Text("المهمة ${task.num}" , style: Themes.headline2,), ),
+          Center(child: Text("المهمة ${task.num}" , style: Themes.headline,), ),
           SizedBox(height: 20,) ,
           Divider(),
           SizedBox(height: 10,) ,
           Container(
 
+            height: MediaQuery.of(context).size.height,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: Card(
                 elevation: 8,
-                shadowColor: Colors.black,
+                shadowColor: Themes.primary,
 
-                shape: Border(right: BorderSide(color: Themes.blue, width: 8)),
+                shape: Border(right: BorderSide(color: Themes.primary, width: 8)),
 
                 margin: EdgeInsets.symmetric(horizontal: 15),
                 color: Themes.orange2,

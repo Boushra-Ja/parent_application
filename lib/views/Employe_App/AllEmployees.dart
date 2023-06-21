@@ -16,6 +16,28 @@ class AllEmployees extends StatelessWidget {
               .reactive(),
         );
       }
+      if(controller.employeeList.isEmpty)
+        {
+          return Center(
+            child: Column(
+              children: [
+                SizedBox(height: 20,),
+                Container(
+                  height:
+                  MediaQuery.of(context).size.height * 0.4,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('images/no.png'),
+                        fit: BoxFit.contain),
+                  ),
+                ),
+                Text(
+                  "لا يوجد مهام متاحة",
+                )
+              ],
+            ),
+          );
+        }
      return SingleChildScrollView(
         physics: ScrollPhysics(),
 
@@ -126,30 +148,3 @@ class AllEmployees extends StatelessWidget {
   }
 }
 
-
-/*
-Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(
-                      color: Colors.grey, style: BorderStyle.solid, width: 0.80),
-                ),
-
-                child: DropdownButton(
-                  items: controller.filter
-                      .map((value) => DropdownMenuItem(
-                    child: Text(value),
-                    value: value,
-                  ))
-                      .toList(),
-                  onChanged: ( value) {
-                    controller.set_selected(value) ;
-                  },
-                  isExpanded: false,
-                  value: controller.selected,
-                  hint: Text("فلترة"),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
- */

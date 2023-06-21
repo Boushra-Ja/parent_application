@@ -1,11 +1,12 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/views/Parent_App/MyChartWidget.dart';
+import 'package:alrazi_project/models/Report.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class TestResultPaage extends StatelessWidget {
+  final Report report ;
+  TestResultPaage({required this.report}) ;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -189,11 +190,11 @@ class TestResultPaage extends StatelessWidget {
 
   List<charts.Series<Resault, String>> _createSampleData() {
     final data = [
-      Resault('الاجتماعي', 5, 10),
-      Resault('المعرفي', 25, 15),
-      Resault('الاتصالي', 100, 20),
-      Resault('العناية', 75, 25),
-      Resault('الحركي', 10, 30),
+      Resault('الاجتماعي', report.old_social_ratio.toDouble() , report.new_social_ratio.toDouble()),
+      Resault('المعرفي',report.old_know_ratio.toDouble() , report.new_know_ratio.toDouble()),
+      Resault('الاتصالي', report.old_comm_ratio.toDouble() , report.new_comm_ratio.toDouble()),
+      Resault('العناية', report.old_care_ratio.toDouble() , report.new_care_ratio.toDouble()),
+      Resault('الحركي', report.old_montor_ratio.toDouble() , report.new_montor_ratio.toDouble()),
     ];
 
     // ignore: unnecessary_null_aware_expression
@@ -237,8 +238,10 @@ class ClipPathClass extends CustomClipper<Path> {
 
 class Resault {
   final String dimenssion;
-  final int old_ratio;
-  final int new_ratio;
+  final double old_ratio;
+  final double new_ratio;
 
-  Resault(this.dimenssion, this.old_ratio, this.new_ratio);
+  Resault(this.dimenssion, double old_ratio, double new_ratio)
+      : old_ratio = old_ratio,
+        new_ratio = new_ratio;
 }

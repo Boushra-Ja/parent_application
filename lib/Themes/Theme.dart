@@ -13,5 +13,6 @@ class Themes{
   static  TextStyle headline1 = const TextStyle(fontSize: 16, color: Colors.white,fontFamily: 'Roboto');
   static  TextStyle headline2 =  TextStyle(fontSize: 16 , color: Colors.black87) ;
   static  TextStyle bodyline1 =  TextStyle(fontSize: 14 , color: Colors.black38) ;
+  static  TextStyle headline =  TextStyle(fontSize: 22 , color: primary , fontWeight: FontWeight.bold) ;
 
 }

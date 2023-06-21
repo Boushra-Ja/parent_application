@@ -6,24 +6,45 @@ import 'package:get/get.dart';
 class AdvicePage extends StatelessWidget {
   final AdvicePageController _controller = Get.put(AdvicePageController());
 
-
   @override
   Widget build(BuildContext context) {
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
+          backgroundColor: Themes.white,
             body: RefreshIndicator(
                 onRefresh: () {
                   return Future.delayed(
                     Duration(seconds: 3),
                     () {
-                      _controller.fetchMyAdvice(3);
+                      _controller.fetchMyAdvice();
                     },
                   );
                 },
                 child: GetBuilder<AdvicePageController>(
                     init: AdvicePageController(),
                     builder: (controller) {
+                      if (controller.AdviceList.isEmpty) {
+                        return Center(
+                          child: Column(
+                            children: [
+                              SizedBox(height: 20,),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.4,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/empty.png'),
+                                      fit: BoxFit.contain),
+                                ),
+                              ),
+                              Text(
+                                "لا يوجد توجيهات متاحة",
+                              )
+                            ],
+                          ),
+                        );
+                      }
                       return SingleChildScrollView(
                         physics: ScrollPhysics(),
                         child: Column(
@@ -64,12 +85,15 @@ class AdvicePage extends StatelessWidget {
                                           children: [
                                             Center(
                                               child: Text(
-                                                'التوجيه ${i+1}',
+                                                'التوجيه ${i + 1}',
                                                 style: Themes.headline2,
                                               ),
                                             ),
                                             Divider(),
-                                            Text(_controller.AdviceList.elementAt(i).text ,
+                                            Text(
+                                              _controller.AdviceList.elementAt(
+                                                      i)
+                                                  .text,
                                               style: Themes.bodyline1,
                                             ),
                                           ],

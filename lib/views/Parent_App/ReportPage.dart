@@ -9,9 +9,15 @@ class ReportPage extends StatelessWidget {
   ReportPageController controller = Get.put(ReportPageController()) ;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ReportPageController>(
-      init: ReportPageController(),
-        builder: (controller){
+    return Obx((){
+      if(!controller.isLoading.value)
+        {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Themes.primary,
+            ),
+          );
+        }
       return Container(
         color: Themes.orange2,
         child: ListView(
@@ -52,14 +58,14 @@ class ReportPage extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            "الحالة :  ${controller.var1}",
+                            "القسم :  ${controller.var2}",
                             style: Themes.bodyline1,
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Text(
-                            "شدة الاصابة : ${controller.var2}",
+                            "شدة الاصابة : ${controller.var1}",
                             style: Themes.bodyline1,
                           ),
                         ],
@@ -92,7 +98,7 @@ class ReportPage extends StatelessWidget {
                                 child: Text('اختبارات ${controller.name}' , style: Themes.headline2,),
                               ),
                               ListView.builder(
-                                  itemCount: 5,
+                                  itemCount: 1,
                                   physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemBuilder: (context, i) {
@@ -104,10 +110,10 @@ class ReportPage extends StatelessWidget {
                                         ListTile(
                                           contentPadding: EdgeInsets.symmetric(horizontal: 10 , vertical: 15),
                                           trailing: IconButton(icon : Icon(Icons.remove_red_eye , size: 20) , onPressed: (){
-                                            Get.to(TestResultPaage());
+                                            Get.to(TestResultPaage(report:controller.report));
                                           },),
                                           title: Text("اختبار الصورة الجانبية" , style: Themes.headline2,),
-                                          subtitle: Text("تاريخ الاختبار  12/2/2022" , style: Themes.bodyline1,),
+                                          subtitle: Text("تاريخ الاختبار  ${controller.report.test_date}" , style: Themes.bodyline1,),
                                         ),
                                       ],
                                     );
