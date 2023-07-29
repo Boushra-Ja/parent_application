@@ -1,5 +1,5 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/controllers/AllEmployeeController.dart';
+import 'package:alrazi_project/controllers/employee/AllEmployeeController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 final AllEmployeeController controller = Get.put(AllEmployeeController());

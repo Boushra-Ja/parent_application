@@ -50,9 +50,11 @@ class TaskDetail extends StatelessWidget{
                       SizedBox(height: 20,) ,
                       Text("التفاصيل :${task.description}"),
                       SizedBox(height: 20,) ,
-                      Text("تاريخ استلام المهمة : ${task.task_date}"),
+                      Text("تاريخ المهمة : ${task.task_date}"),
                       SizedBox(height: 20,) ,
-                      Text("التاريخ المتوقع للتسليم : ${task.deliver_date}"),
+                      Text("تبدأ المهمة في الساعة : 1:00 "),
+                      SizedBox(height: 20,) ,
+                      Text("الوقت المتوقع للإنجاز في الساعة : ${task.deliver_date}"),
                       SizedBox(height: 20,) ,
 
                     ],

@@ -1,12 +1,13 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController{
   var name, id  ;
+  final storage = const FlutterSecureStorage();
 
   @override
   void onInit() {
@@ -16,9 +17,8 @@ class HomeController extends GetxController{
   }
 
   void inital()async{
-    final prefs = await SharedPreferences.getInstance();
-    name = prefs.getString('name') ?? '';
-    id = prefs.getString('id') ?? '';
+    name = await storage.read(key: 'name') ?? '';
+    id = await storage.read(key: 'id') ?? '';
 
   }
 }

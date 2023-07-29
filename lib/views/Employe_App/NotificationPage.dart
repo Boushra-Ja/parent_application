@@ -1,11 +1,12 @@
-
-
-
 import 'package:alrazi_project/Themes/Theme.dart';
+import 'package:alrazi_project/controllers/Notification/NotificationController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotificationPage extends StatelessWidget {
+
+  NotificationController controller = Get.put(NotificationController()) ;
+
   @override
   Widget build(BuildContext context) {
 
@@ -14,42 +15,55 @@ class NotificationPage extends StatelessWidget {
         child: Scaffold(
             appBar: RoundedAppBar(),
             backgroundColor: Themes.orange2,
-            body:   ListView.builder(
-                    itemCount: 8,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10.0, right: 10, bottom: 15),
-                        child: InkWell(
-                          onTap: () {
-
-                          },
-                          child: ListTile(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              selected: true,
-                              contentPadding: EdgeInsets.all(20),
-                              selectedTileColor: Colors.white,
-                              leading: CircleAvatar(
-                                  radius: 35,
-                                backgroundColor: Themes.orange,
-                                child: Icon(Icons.abc),
-                              ),
-                              trailing: Text(
-                                "3-3-2023 ",
-                                style: Themes.bodyline1,
-                              ),
-                              title: Text(
-                                "تسليم مهمة",
-                                style: Themes.headline2,
-                              ),
-                              subtitle: Text(
-                                "قام المدير بتسليمك مهمة كذا الخاصة بالطفل كذا ",
-                                style: Themes.bodyline1,
-                              )),
+            body:  Obx(
+                (){
+                  if(!controller.isLoading.value)
+                    {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: Themes.primary,
                         ),
                       );
-                    })));
+                    }
+                  return  ListView.builder(
+                      itemCount: controller.notifications.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10.0, right: 10, bottom: 15),
+                          child: InkWell(
+                            onTap: () {
+
+                            },
+                            child: ListTile(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                selected: true,
+                                contentPadding: EdgeInsets.all(20),
+                                selectedTileColor: Colors.white,
+                                leading: CircleAvatar(
+                                  radius: 35,
+                                  backgroundColor: Themes.orange,
+                                  child: Icon(Icons.abc),
+                                ),
+                                trailing: Text(
+                                  controller.notifications.elementAt(index).created_at,
+                                  style: Themes.bodyline1,
+                                ),
+                                title: Text(
+                                  controller.notifications.elementAt(index).title,
+                                  style: Themes.headline2,
+                                ),
+                                subtitle: Text(
+                                  controller.notifications.elementAt(index).message,
+                                  style: Themes.bodyline1,
+                                )),
+                          ),
+                        );
+                      }) ;
+                }
+            )
+        ));
               }
 
   }

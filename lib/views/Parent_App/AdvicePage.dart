@@ -1,5 +1,5 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/controllers/AdvicePageController.dart';
+import 'package:alrazi_project/controllers/parent/AdvicePageController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/controllers/ReportPageController.dart';
+import 'package:alrazi_project/controllers/parent/ReportPageController.dart';
 import 'package:alrazi_project/views/Parent_App/MyChartWidget.dart';
 import 'package:alrazi_project/views/Parent_App/TestResultPage.dart';
 import 'package:flutter/material.dart';

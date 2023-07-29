@@ -1,11 +1,12 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/models/Report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
+import '../../models/TableResault.dart';
+
 class TestResultPaage extends StatelessWidget {
-  final Report report ;
+  final ReportModel report ;
   TestResultPaage({required this.report}) ;
   @override
   Widget build(BuildContext context) {
@@ -61,39 +62,39 @@ class TestResultPaage extends StatelessWidget {
                               Text('مستوى التأخر'),
                             ]),
                             TableRow(children: [
-                              Text('الاجتماعي' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' شديد'  , style: Themes.bodyline1,),
+                              Text(report.social.dimenssion , style: Themes.bodyline3,),
+                              Text('${report.social.age}' , style: Themes.bodyline3,),
+                              Text('${report.social.ratio}'  , style: Themes.bodyline3,),
+                              Text('${report.social.t_age}' , style: Themes.bodyline3,),
+                              Text('${report.social.level}'  , style: Themes.bodyline3,),
                             ]),
                             TableRow(children: [
-                              Text('الحركي' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' متوسط' , style: Themes.bodyline1,),
+                              Text(report.monotor.dimenssion , style: Themes.bodyline3,),
+                              Text('${report.monotor.age}'  , style: Themes.bodyline3,),
+                              Text('${report.monotor.ratio}' , style: Themes.bodyline3,),
+                              Text('${report.monotor.t_age}' , style: Themes.bodyline3,),
+                              Text('${report.monotor.level}' , style: Themes.bodyline3,),
                             ]),
                             TableRow(children: [
-                              Text('المعرفي' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' متوسط' , style: Themes.bodyline1,),
+                              Text(report.know.dimenssion , style: Themes.bodyline3,),
+                              Text('${report.know.age}', style: Themes.bodyline3,),
+                              Text('${report.know.ratio}' , style: Themes.bodyline3,),
+                              Text('${report.know.t_age}' , style: Themes.bodyline3,),
+                              Text('${report.know.level}' , style: Themes.bodyline3,),
                             ]),
                             TableRow(children: [
-                              Text('الاتصالي' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' متوسط' , style: Themes.bodyline1,),
+                              Text(report.comm.dimenssion , style: Themes.bodyline3,),
+                              Text('${report.comm.age}' , style: Themes.bodyline3,),
+                              Text('${report.comm.ratio}', style: Themes.bodyline3,),
+                              Text('${report.comm.t_age}', style: Themes.bodyline3,),
+                              Text('${report.comm.level}', style: Themes.bodyline3,),
                             ]),
                             TableRow(children: [
-                              Text('العناية' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' 5' , style: Themes.bodyline1,),
-                              Text(' شديد' , style: Themes.bodyline1,),
+                              Text(report.care.dimenssion, style: Themes.bodyline3,),
+                              Text('${report.care.age}', style: Themes.bodyline3,),
+                              Text('${report.care.ratio}' , style: Themes.bodyline3,),
+                              Text('${report.care.t_age}' , style: Themes.bodyline3,),
+                              Text('${report.care.level}' , style: Themes.bodyline3,),
                             ])
                           ],
                         ),

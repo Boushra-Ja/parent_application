@@ -1,13 +1,15 @@
-import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/controllers/parent/ParentLoginController.dart';
+import 'package:alrazi_project/controllers/PasswordController.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import '../../Themes/Theme.dart';
 import '../WelcomePage.dart';
 
-class FamilyLogin extends StatelessWidget {
-  ParentLoginController controller = Get.put(ParentLoginController());
-  final _textController = TextEditingController();
+class PasswordPage extends GetView{
+  PasswordController controller = Get.put(PasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -59,33 +61,38 @@ class FamilyLogin extends StatelessWidget {
                             ),
                             Divider(),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
+
+                            Container(
+                              child: Text('الرجاء وضع كلمة مرور مناسبة لحسابك..',style: Themes.bodyline1,),
+                            ),
+                            SizedBox(height: 10,) ,
                             Row(
                               children: [
                                 Expanded(flex: 1, child: SizedBox.shrink()),
                                 Expanded(
                                   flex: 5,
                                   child: Container(
-                                    height: 50,
+                                    height: 70,
                                     child: Form(
-                                      key: controller.loginFormkey,
+                                      key: controller.passwordFormkey,
                                       child: TextFormField(
-                                        controller: _textController,
                                         keyboardType: TextInputType.text,
                                         validator: (val) {
                                           if (val!.isEmpty) return "مطلوب";
+                                          else if (val.length < 6) return "كلمة المرور يجب أن تكون أكبر من 6 أحرف";
                                           return null;
                                         },
                                         onSaved: (val) {
-                                          controller.unique_number = val;
+                                          controller.password = val!;
                                         },
                                         style: TextStyle(color: Colors.black),
                                         decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(30)),
-                                            hintText: "#الرقم المميز للطفل",
+                                                BorderRadius.circular(30)),
+                                            hintText: "كلمة المرور  ******",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 14),
@@ -101,20 +108,23 @@ class FamilyLogin extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              height: 30,
+                              height: 10,
                             ),
+                            Obx(()=>
+                            controller.isLoading.value == true ?
+                            const  Center(child:
+                            CircularProgressIndicator ()): const Text("")),
                             ButtonTheme(
                               minWidth: MediaQuery.of(context).size.width * 0.4,
                               child: MaterialButton(
                                 onPressed: () {
-                                  controller.doLoginParent();
-                                  _textController.clear();
+                                  controller.save();
                                 },
-                                color: Themes.secondary,
+                                color: Themes.primary,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Text(
-                                  "تسجيل",
+                                  "حفظ",
                                   style: Themes.headline1,
                                 ),
                               ),
@@ -128,4 +138,5 @@ class FamilyLogin extends StatelessWidget {
           ),
         ));
   }
+
 }

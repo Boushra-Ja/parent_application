@@ -1,13 +1,14 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/controllers/LoginController.dart';
+import 'package:alrazi_project/controllers/employee/EmpLoginController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import '../WelcomePage.dart';
 
 
-class EmployeeLogin extends GetView<LoginController> {
-  LoginController controller = Get.put(LoginController());
+class EmployeeLogin extends GetView<EmpLoginController> {
+  EmpLoginController controller = Get.put(EmpLoginController());
+  final _textController = TextEditingController();
 
 
   @override
@@ -60,64 +61,73 @@ class EmployeeLogin extends GetView<LoginController> {
                             ),
                             Divider(),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
-                            Row(
-                              children: [
-                                Expanded(flex: 1, child: SizedBox.shrink()),
-                                Expanded(
-                                  flex: 5,
-                                  child: Container(
-                                    height: 50,
-                                    child: Form(
-                                      key: controller.loginFormkey,
-                                      child: TextFormField(
-                                        keyboardType: TextInputType.text,
-                                        validator: (val) {
-                                          if (val!.isEmpty) return "مطلوب";
-                                          return null;
-                                        },
-                                        onSaved: (val) {
-                                          controller.unique_number = val;
-                                        },
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(30)),
-                                            hintText: "#الرقم المميز للطفل",
-                                            hintStyle: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 14),
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                10.0, 0.01, 20.0, 0.01),
-                                            filled: true,
-                                            fillColor: Colors.white),
+
+                                   Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(flex: 1, child: SizedBox.shrink()),
+                                          Expanded(
+                                            flex: 5,
+                                            child: Container(
+                                              height: 50,
+                                              child: Form(
+                                                key: controller.loginFormkey,
+                                                child: TextFormField(
+                                                  controller: _textController,
+                                                  keyboardType: TextInputType.text,
+                                                  validator: (val) {
+                                                    if (val!.isEmpty) return "مطلوب";
+                                                    return null;
+                                                  },
+                                                  onSaved: (val) {
+                                                    controller.unique_number = val;
+                                                  },
+                                                  style: TextStyle(color: Colors.black),
+                                                  decoration: InputDecoration(
+                                                      border: OutlineInputBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(30)),
+                                                      hintText: "#الرقم المميز للموظف",
+                                                      hintStyle: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 14),
+                                                      contentPadding: EdgeInsets.fromLTRB(
+                                                          10.0, 0.01, 20.0, 0.01),
+                                                      filled: true,
+                                                      fillColor: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(flex: 1, child: SizedBox.shrink()),
+                                        ],
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(flex: 1, child: SizedBox.shrink()),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            ButtonTheme(
-                              minWidth: MediaQuery.of(context).size.width * 0.4,
-                              child: MaterialButton(
-                                onPressed: () {
-                                  controller.doLogin();
-                                },
-                                color: Themes.primary,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: Text(
-                                  "تسجيل",
-                                  style: Themes.headline1,
-                                ),
-                              ),
-                            ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      ButtonTheme(
+                                        minWidth: MediaQuery.of(context).size.width * 0.4,
+                                        child: MaterialButton(
+                                          onPressed: () {
+                                            controller.doLogin();
+                                            _textController.clear() ;
+                                          },
+                                          color: Themes.primary,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(30)),
+                                          child: Text(
+                                            "التالي",
+                                            style: Themes.headline1,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+
+
                           ],
                         ),
                       ))
