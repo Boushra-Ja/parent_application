@@ -1,15 +1,14 @@
-import 'package:alrazi_project/controllers/PasswordController.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:alrazi_project/controllers/employee/LoginController.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../Themes/Theme.dart';
 import '../WelcomePage.dart';
+import 'package:email_validator/email_validator.dart';
 
-class PasswordPage extends GetView{
-  PasswordController controller = Get.put(PasswordController());
+class LoginPage extends StatelessWidget{
+  LoginController controller = Get.put(LoginController()) ;
+  final _textController = TextEditingController();
+  final _confirmtextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,7 @@ class PasswordPage extends GetView{
                         child: Column(
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.4,
+                              height: MediaQuery.of(context).size.height * 0.3,
                               width: MediaQuery.of(context).size.width * 0.7,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -63,36 +62,34 @@ class PasswordPage extends GetView{
                             SizedBox(
                               height: 20,
                             ),
-
-                            Container(
-                              child: Text('الرجاء وضع كلمة مرور مناسبة لحسابك..',style: Themes.bodyline1,),
-                            ),
-                            SizedBox(height: 10,) ,
                             Row(
                               children: [
                                 Expanded(flex: 1, child: SizedBox.shrink()),
                                 Expanded(
                                   flex: 5,
                                   child: Container(
-                                    height: 70,
+                                    height: 50,
                                     child: Form(
-                                      key: controller.passwordFormkey,
+                                      key: controller.emailFormkey,
                                       child: TextFormField(
+                                        controller: _textController,
                                         keyboardType: TextInputType.text,
                                         validator: (val) {
                                           if (val!.isEmpty) return "مطلوب";
-                                          else if (val.length < 6) return "كلمة المرور يجب أن تكون أكبر من 6 أحرف";
+                                          if (!EmailValidator.validate(_textController.text)) {
+                                            return 'الايميل غير صالح' ;
+                                          }
                                           return null;
                                         },
                                         onSaved: (val) {
-                                          controller.password = val!;
+                                          controller.email = val ;
                                         },
                                         style: TextStyle(color: Colors.black),
                                         decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                 BorderRadius.circular(30)),
-                                            hintText: "كلمة المرور  ******",
+                                            hintText: 'البريد الالكتروني',
                                             hintStyle: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 14),
@@ -108,8 +105,54 @@ class PasswordPage extends GetView{
                               ],
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
+
+                            Row(
+                              children: [
+                                Expanded(flex: 1, child: SizedBox.shrink()),
+                                Expanded(
+                                  flex: 5,
+                                  child: Container(
+                                    height: 50,
+                                    child: Form(
+                                      key: controller.passwordFormkey,
+                                      child: TextFormField(
+                                        controller: _confirmtextController,
+                                        keyboardType: TextInputType.text,
+                                        validator: (val) {
+                                          if (val!.isEmpty) return "مطلوب";
+                                          if(val.length < 6 )
+                                            return 'لا يمكن أن تكون كلمة المرور أقل من 6 أحرف' ;
+                                          return null;
+                                        },
+                                        onSaved: (val) {
+                                          controller.password = val ;
+                                          },
+                                        style: TextStyle(color: Colors.black),
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(30)),
+                                            hintText: 'كلمة المرور',
+                                            hintStyle: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 14),
+                                            contentPadding: EdgeInsets.fromLTRB(
+                                                10.0, 0.01, 20.0, 0.01),
+                                            filled: true,
+                                            fillColor: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(flex: 1, child: SizedBox.shrink()),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+
                             Obx(()=>
                             controller.isLoading.value == true ?
                             const  Center(child:
@@ -117,18 +160,21 @@ class PasswordPage extends GetView{
                             ButtonTheme(
                               minWidth: MediaQuery.of(context).size.width * 0.4,
                               child: MaterialButton(
-                                onPressed: () {
-                                  controller.save();
+                                onPressed: ()async {
+                                  await controller.login() ;
                                 },
                                 color: Themes.primary,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Text(
-                                  "حفظ",
+                                  "تسجيل",
                                   style: Themes.headline1,
                                 ),
                               ),
                             ),
+
+
+
                           ],
                         ),
                       ))

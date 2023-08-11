@@ -59,7 +59,7 @@ class EmployeHome extends GetView<HomeController> {
             child: TabBar(
               indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(50), // Creates border
-                  color: Themes.secondary.withOpacity(0.8)),
+                  color: Themes.secondary.withOpacity(0.7)),
               tabs: const [
                 Tab(
                   text: "مهامي",
@@ -75,7 +75,7 @@ class EmployeHome extends GetView<HomeController> {
               children: [
                 CircleAvatar(
                   radius: 20,
-                  backgroundColor: Themes.secondary.withOpacity(0.8),
+                  backgroundColor: Themes.secondary.withOpacity(0.7),
                   child: Icon(Icons.person, color: Colors.white,),
                 ),
                 SizedBox(

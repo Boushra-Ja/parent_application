@@ -55,7 +55,6 @@ class ParentLoginController extends GetxController{
           section: childModel.data[0].section,
           phone_num: childModel.data[0].phone_num);
 
-      await storage.write(key: "type", value: '1');
       await storage.write(key: "name", value: '${child.name}');
       await storage.write(key: "id", value: '${child.id}');
       await storage.write(key: "infection", value: '${child.infection}');

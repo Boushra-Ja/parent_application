@@ -47,6 +47,8 @@ dependencies:
   pusher_client: ^2.0.0
   flutter_local_notifications:
   rxdart:
+  email_validator: ^2.0.1
+
 
 
 

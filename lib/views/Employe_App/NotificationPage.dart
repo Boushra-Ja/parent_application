@@ -9,12 +9,11 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
-            appBar: RoundedAppBar(),
-            backgroundColor: Themes.orange2,
+            appBar: RoundedAppBar(controller.rule.trim()),
+            backgroundColor: controller.notifications.isEmpty ? Themes.white : Themes.orange2,
             body:  Obx(
                 (){
                   if(!controller.isLoading.value)
@@ -25,6 +24,28 @@ class NotificationPage extends StatelessWidget {
                         ),
                       );
                     }
+
+                  if (controller.notifications.isEmpty) {
+                    return Center(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 20,),
+                          Container(
+                            height:
+                            MediaQuery.of(context).size.height * 0.4,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('images/no.png'),
+                                  fit: BoxFit.contain),
+                            ),
+                          ),
+                          Text(
+                            "لا يوجد اشعارات متوفرة",
+                          )
+                        ],
+                      ),
+                    );
+                  }
                   return  ListView.builder(
                       itemCount: controller.notifications.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -43,7 +64,7 @@ class NotificationPage extends StatelessWidget {
                                 selectedTileColor: Colors.white,
                                 leading: CircleAvatar(
                                   radius: 35,
-                                  backgroundColor: Themes.orange,
+                                  backgroundColor: Themes.secondary,
                                   child: Icon(Icons.abc),
                                 ),
                                 trailing: Text(
@@ -73,9 +94,11 @@ class NotificationPage extends StatelessWidget {
 
 class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
 
-
+  final rule ;
+  RoundedAppBar(this.rule) ;
   @override
   Widget build(BuildContext context) {
+
     return Stack(
       children: [
         new SizedBox.fromSize(
@@ -94,7 +117,7 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
                         bottom: width / 2 - preferredSize.height / 2),
                     child: new DecoratedBox(
                       decoration: new BoxDecoration(
-                        color: Themes.blue,
+                        color: rule == 'employee' ? Themes.primary : Themes.secondary,
                         shape: BoxShape.circle,
                         boxShadow: [
                           new BoxShadow(color: Colors.black54, blurRadius: 10.0)
@@ -119,7 +142,7 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
                   child: Icon(
                     Icons.arrow_back_rounded,
                     color:
-                    Themes.orange,
+                    Themes.secondary,
                   ),
                   backgroundColor: Colors.grey.shade200,
                 ),

@@ -25,8 +25,8 @@ class AllEmployeeController extends GetxController{
     if(response.statusCode == 200)
     {
 
-      EmployeeModel shopModel = EmployeeModel.fromJson(jsonDecode(response.body)) ;
-      employeeList.assignAll(shopModel.data );
+      EmployeListModel employeListModel = EmployeListModel.fromJson(jsonDecode(response.body)) ;
+      employeeList.assignAll(employeListModel.data );
 
       isLoading.value = false;
 
@@ -46,8 +46,9 @@ class AllEmployeeController extends GetxController{
 
     if(response.statusCode == 200)
     {
+      print(response.body ) ;
 
-      EmployeeModel shopModel = EmployeeModel.fromJson(jsonDecode(response.body)) ;
+      EmployeListModel shopModel = EmployeListModel.fromJson(jsonDecode(response.body)) ;
       employeeList.assignAll(shopModel.data );
 
       isLoading.value = false;
@@ -63,7 +64,7 @@ class AllEmployeeController extends GetxController{
     if(response.statusCode == 200)
     {
 
-      EmployeeModel shopModel = EmployeeModel.fromJson(jsonDecode(response.body)) ;
+      EmployeListModel shopModel = EmployeListModel.fromJson(jsonDecode(response.body)) ;
       employeeList.assignAll(shopModel.data );
 
       isLoading.value = false;

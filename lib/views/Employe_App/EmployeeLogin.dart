@@ -1,15 +1,15 @@
 import 'package:alrazi_project/Themes/Theme.dart';
 import 'package:alrazi_project/controllers/employee/EmpLoginController.dart';
+import 'package:alrazi_project/views/Employe_App/LoginPage.dart';
+import 'package:alrazi_project/views/Employe_App/RegisterPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import '../WelcomePage.dart';
 
-
 class EmployeeLogin extends GetView<EmpLoginController> {
   EmpLoginController controller = Get.put(EmpLoginController());
   final _textController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -61,73 +61,65 @@ class EmployeeLogin extends GetView<EmpLoginController> {
                             ),
                             Divider(),
                             SizedBox(
-                              height: 20,
+                              height: 50,
                             ),
-
-                                   Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(flex: 1, child: SizedBox.shrink()),
-                                          Expanded(
-                                            flex: 5,
-                                            child: Container(
-                                              height: 50,
-                                              child: Form(
-                                                key: controller.loginFormkey,
-                                                child: TextFormField(
-                                                  controller: _textController,
-                                                  keyboardType: TextInputType.text,
-                                                  validator: (val) {
-                                                    if (val!.isEmpty) return "مطلوب";
-                                                    return null;
-                                                  },
-                                                  onSaved: (val) {
-                                                    controller.unique_number = val;
-                                                  },
-                                                  style: TextStyle(color: Colors.black),
-                                                  decoration: InputDecoration(
-                                                      border: OutlineInputBorder(
-                                                          borderRadius:
-                                                          BorderRadius.circular(30)),
-                                                      hintText: "#الرقم المميز للموظف",
-                                                      hintStyle: TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 14),
-                                                      contentPadding: EdgeInsets.fromLTRB(
-                                                          10.0, 0.01, 20.0, 0.01),
-                                                      filled: true,
-                                                      fillColor: Colors.white),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(flex: 1, child: SizedBox.shrink()),
-                                        ],
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SizedBox.shrink(),
+                                  flex: 1,
+                                ),
+                                Expanded(
+                                  flex: 4,
+                                  child: ButtonTheme(
+                                    minWidth:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: MaterialButton(
+                                      onPressed: () {
+                                        Get.to(LoginPage()) ;
+                                      },
+                                      color: Themes.primary,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                      child: Text(
+                                        "تسجيل دخول",
+                                        style: Themes.headline1,
                                       ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.4,
-                                        child: MaterialButton(
-                                          onPressed: () {
-                                            controller.doLogin();
-                                            _textController.clear() ;
-                                          },
-                                          color: Themes.primary,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(30)),
-                                          child: Text(
-                                            "التالي",
-                                            style: Themes.headline1,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  )
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SizedBox.shrink(),
+                                  flex: 1,
+                                ),
+                                Expanded(
+                                  flex: 4,
+                                  child: ButtonTheme(
+                                    minWidth:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: MaterialButton(
+                                      onPressed: () {
 
-
+                                        Get.to(RegisterPage()) ;
+                                      },
+                                      color: Themes.primary,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                      child: Text(
+                                        "إنشاء حساب",
+                                        style: Themes.headline1,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SizedBox.shrink(),
+                                  flex: 1,
+                                )
+                              ],
+                            )
                           ],
                         ),
                       ))

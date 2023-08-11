@@ -121,7 +121,7 @@ class AllEmployees extends StatelessWidget {
                                       ),
                                       Icon(
                                         Icons.star,
-                                        color: Themes.orange,
+                                        color: Themes.secondary,
                                       ),
                                     ],
                                   )

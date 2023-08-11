@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -9,13 +8,12 @@ import '../../models/Notification.dart';
 class NotificationController extends GetxController{
 
   final storage = const FlutterSecureStorage();
-  var emp_id  , isLoading = false.obs  , token;
-
+  var emp_id  , isLoading = false.obs  , token  ;
+  String rule = '';
   List<Notification> notifications = <Notification>[].obs ;
 
   Future<void> fetch_notification() async {
-    print('99999999999999999999') ;
-    print(emp_id);
+
     final response = await http
         .get(Uri.parse('${MyApp.api}/api/employee/notifications/$emp_id'),
         headers: {'Content-Type': 'application/json',
@@ -28,15 +26,16 @@ class NotificationController extends GetxController{
 
       notifications.assignAll(notificationModel.data) ;
       print("success") ;
+      isLoading.value = true ;
 
     }
-    isLoading.value = true ;
 
   }
 
   init()async{
     emp_id = await storage.read(key: 'id');
     token = await storage.read(key: 'token');
+    rule = (await storage.read(key: 'role'))!;
 
     await fetch_notification();
   }
@@ -46,5 +45,11 @@ class NotificationController extends GetxController{
     init() ;
     super.onInit();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
 
 }

@@ -8,6 +8,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import '../../controllers/HomeController.dart';
 import '../../controllers/Notification/SingltoneNotification.dart';
+import 'AppoinmentPage.dart';
 
 class FamilyHome extends GetView<HomeController> {
   final controller = Get.put(HomeController());
@@ -23,7 +24,7 @@ class FamilyHome extends GetView<HomeController> {
             init: HomeController(),
             builder: (controller) {
               return DefaultTabController(
-                length: 2,
+                length: 3,
                 child: FutureBuilder(
                     future: Future.delayed(Duration(seconds: 1)),
                     builder: (context, snapshot) {
@@ -74,12 +75,13 @@ class FamilyHome extends GetView<HomeController> {
                               indicator: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
                                   // Creates border
-                                  color: Themes.blue),
+                                  color: Themes.primary.withOpacity(0.6)),
                               tabs: const [
                                 Tab(
                                   text: "تقارير",
                                 ),
-                                Tab(text: "توجيهات")
+                                Tab(text: "توجيهات") ,
+                                Tab(text: "مواعيد")
                               ],
                             ),
                           ),
@@ -92,7 +94,7 @@ class FamilyHome extends GetView<HomeController> {
                               children: [
                                 CircleAvatar(
                                   radius: 20,
-                                  backgroundColor: Themes.blue,
+                                  backgroundColor: Themes.primary.withOpacity(0.6),
                                   child: Icon(
                                     Icons.person,
                                     color: Colors.white,
@@ -105,10 +107,10 @@ class FamilyHome extends GetView<HomeController> {
                               ],
                             ),
                           ),
-                          backgroundColor: Themes.orange,
+                          backgroundColor: Themes.secondary,
                         ),
                         body: TabBarView(
-                          children: [ReportPage(), AdvicePage()],
+                          children: [ReportPage(), AdvicePage() , AppinmentPage()],
                         ),
                       );
                     }),
