@@ -1,8 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:alrazi_project/models/Task.dart';
-
 TaskPointModel tableFromJson(String str) =>
     TaskPointModel.toObject(json.decode(str));
 
@@ -21,15 +19,15 @@ class TaskPointModel{
   };
 }
 class TaskPoint {
-  var task_name , points ;
+  var task_name , points  ;
 
   factory TaskPoint.toObject(Map<String , dynamic> json)
   {
 
-    return TaskPoint(task_name : json['task_name'] ,points: json['points']);
+    return TaskPoint(task_name : json['task_name'] ,points: json['points'] );
   }
 
-  TaskPoint({required this.task_name , required this.points });
+  TaskPoint({required this.task_name , required this.points});
 
   factory TaskPoint.fromJson(Map<String , dynamic> json)
   {
@@ -42,6 +40,7 @@ class TaskPoint {
   Map<String, dynamic> toJson() => {
     "task_name": task_name.toJson(),
     "points": points.toJson(),
+
 
   };
 }

@@ -62,11 +62,12 @@ class ParentLoginController extends GetxController{
       await storage.write(key: "islogin", value: 'true');
       await storage.write(key: "role", value: 'child');
 
-      var n = await storage .read(key: 'name') ;
-      print('dddddddddddddddddddddddddd');
-      print(n);
-      var t = await storage .read(key: 'type') ;
-      print(t);
+      var n = await storage .read(key: 'id') ;
+      print('***********************');
+      print(n ) ;
+      print('***********************');
+
+
 
       return this.child;
     } else

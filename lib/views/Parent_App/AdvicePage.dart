@@ -59,8 +59,8 @@ class AdvicePage extends StatelessWidget {
                                 decoration: new BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Themes.grey,
-                                      blurRadius: 25.0,
+                                      color: Themes.grey.withOpacity(0.6),
+                                      blurRadius: 10.0,
                                     ),
                                   ],
                                 ),

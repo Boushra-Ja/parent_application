@@ -15,7 +15,8 @@ class ReportModel {
       new_comm_ratio,
       old_comm_ratio,
       new_know_ratio,
-      old_know_ratio;
+      old_know_ratio,
+  section , infection;
 
   ReportModel(
       {required this.test_date,
@@ -33,7 +34,7 @@ class ReportModel {
       required this.know,
       required this.care,
       required this.monotor,
-      required this.comm});
+      required this.comm , required this.section , required this.infection});
 
   factory ReportModel.toObject(Map<String, dynamic> json) =>
       ReportModel(
@@ -53,6 +54,9 @@ class ReportModel {
         care: TableResault.toObject(json['care']),
         monotor: TableResault.toObject(json['monotor']),
         comm: TableResault.toObject(json['comm']),
+        section:json['section'] ,
+          infection:json['infection']
+
       );
 
   Map<String, dynamic> toJson() => {
@@ -72,6 +76,8 @@ class ReportModel {
         'old_comm_ratio': old_comm_ratio.toJson(),
         'new_know_ratio': new_know_ratio.toJson(),
         'old_know_ratio': old_know_ratio.toJson(),
+    'section' :section.toJson() ,
+    'infection' :infection.toJson()
       };
 }
 

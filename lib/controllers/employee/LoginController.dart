@@ -31,7 +31,7 @@ class LoginController extends GetxController{
       var response = await http.post(Uri.parse('${MyApp.api}/api/emp/login'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(
-              <String, dynamic>{"email": email , 'password' : password}));
+              <String, dynamic>{"email": email , 'password' : password , 'role' :'Employee'}));
 
       if(response.statusCode == 200)
       {
@@ -45,7 +45,13 @@ class LoginController extends GetxController{
             points: employeeModel.data.points,
             task_count: employeeModel.data.task_count ,password: employeeModel.data.password , email: employeeModel.data.email);
 
+
         await store_in_storage() ;
+        var id = storage.read(key: 'id') ;
+        print('***********************');
+        print(id ) ;
+        print('***********************');
+
         isLoading.value = false;
         Get.to(EmployeHome()) ;
       }
@@ -77,6 +83,7 @@ class LoginController extends GetxController{
     await storage.write(key: "islogin", value: 'true');
     await storage.write(key: "role", value: 'employee');
     await storage.write(key: "password", value: '${password}');
+
 
   }
 

@@ -1,4 +1,7 @@
+import 'package:alrazi_project/controllers/employee/BounsController.dart';
+import 'package:alrazi_project/views/Employe_App/NotificationPages/BounsNotificationPage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 
 class NotificationApi {
@@ -29,7 +32,11 @@ class NotificationApi {
       onDidReceiveBackgroundNotificationResponse: (payload) async {
         onNotifications.add("bbb");
         print (payload);
+        navigateToNotificationDetails(payload);
+
+
       },
+
     );
   }
 
@@ -47,4 +54,12 @@ class NotificationApi {
         await _notificationDetails(),
         payload: payload,
       );
+
+
+  static void navigateToNotificationDetails(var payload) {
+
+    print(payload) ;
+    Get.to(BounsNotificationPage()) ;
+
+  }
 }

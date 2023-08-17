@@ -10,6 +10,7 @@ import 'TaskDetail.dart';
 class MyTask extends StatelessWidget{
 
   MyTaskController controller = Get.put(MyTaskController()) ;
+  final _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -96,10 +97,10 @@ class MyTask extends StatelessWidget{
                       trailing:  Wrap(
                         spacing: 6, // space between two icons
                         children: <Widget>[
-                          IconButton(icon : Icon(Icons.details) , color: Themes.primary,onPressed: (){
+                          IconButton(icon : Icon(Icons.remove_red_eye) , color: Themes.primary,onPressed: (){
                             Get.to(TaskDetail(controller.taskList.elementAt(index))) ;
                           },), // icon-1
-                          IconButton(icon:Icon(Icons.terminal) , color: Themes.primary, onPressed: (){
+                          IconButton(icon:Icon(Icons.check_box) , color: Themes.primary, onPressed: (){
                             Get.dialog(
                                 Directionality(
                                   textDirection: TextDirection.rtl,
@@ -139,6 +140,7 @@ class MyTask extends StatelessWidget{
                                                     child: Form(
                                                       key: controller.noteFormKey,
                                                       child: TextFormField(
+
                                                         maxLength: null,
                                                         controller: controller.noteController,
                                                         keyboardType: TextInputType.text,
@@ -184,6 +186,8 @@ class MyTask extends StatelessWidget{
                                                           ),
                                                           onPressed: () {
                                                             controller.terminate_task(controller.taskList.elementAt(index).num , index) ;
+                                                            controller.noteController.clear() ;
+
                                                           },
                                                         ),
                                                       ),

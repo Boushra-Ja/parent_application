@@ -36,7 +36,7 @@ class RegisterController extends GetxController{
       var response = await http.post(Uri.parse('${MyApp.api}/api/emp/register'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(
-              <String, dynamic>{"email": email , 'password' : password}));
+              <String, dynamic>{"email": email , 'password' : password , 'role' :'Employee'}));
 
       if(response.statusCode == 200)
       {

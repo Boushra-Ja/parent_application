@@ -12,6 +12,7 @@ class NotificationPage extends StatelessWidget {
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
+
             appBar: RoundedAppBar(controller.rule.trim()),
             backgroundColor: controller.notifications.isEmpty ? Themes.white : Themes.orange2,
             body:  Obx(
@@ -61,7 +62,7 @@ class NotificationPage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(20.0)),
                                 selected: true,
                                 contentPadding: EdgeInsets.all(20),
-                                selectedTileColor: Colors.white,
+                                selectedTileColor: Colors.grey.shade50,
                                 leading: CircleAvatar(
                                   radius: 35,
                                   backgroundColor: Themes.secondary,

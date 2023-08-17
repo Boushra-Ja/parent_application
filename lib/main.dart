@@ -11,7 +11,6 @@ Future<void>  main()async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await GetStorage.init();
-  await GetStorage.init();
   role = await storage.read(key: 'role') ?? '';
   isLogin = await storage.read(key: 'islogin') ?? '';
   runApp(const MyApp());

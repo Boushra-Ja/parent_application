@@ -20,5 +20,11 @@ class HomeController extends GetxController{
     name = await storage.read(key: 'name') ?? '';
     id = await storage.read(key: 'id') ?? '';
 
+    print('&&&&&&&&&&&&&&&&&&&&&&&&&');
+    print(id ) ;
+    print(name ) ;
+
+    print('&&&&&&&&&&&&&&&&&&&&&&&&&');
+
   }
 }

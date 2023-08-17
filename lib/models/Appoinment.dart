@@ -3,19 +3,19 @@ import 'package:intl/intl.dart';
 class Appoinment{
 
   int id   , hours  ;
-  var app_date ,start_app    ;
+  var app_date ,start_app   , check ;
 
   factory Appoinment.fromJson(Map<String , dynamic> json)
   {
 
     return Appoinment(id : json['id'] ,
       hours : json['hours']   , app_date : json['app_date'] ,
-      start_app : json['start']
+      start_app : json['start'] , check:json['check']
     );
   }
 
   Appoinment({required this.id , required this.hours  ,
-    required this.app_date , required this.start_app
+    required this.app_date , required this.start_app , required this.check
   });
 
 }

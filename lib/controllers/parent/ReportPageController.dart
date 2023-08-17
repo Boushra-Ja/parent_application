@@ -21,8 +21,8 @@ class ReportPageController extends GetxController {
   void inital() async {
     name =await storage.read(key: 'name') ?? '';
     id = await storage.read(key: 'id') ?? '';
-    user_type = await storage.read(key: 'type') ?? '';
-    if (user_type == '1') {
+    user_type = await storage.read(key: 'role') ?? '';
+    if (user_type == 'child') {
       var1 = await storage.read(key: 'infection')?? '';
       var2 = await storage.read(key: 'section') ?? '';
     }

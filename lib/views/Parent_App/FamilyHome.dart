@@ -1,5 +1,5 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/views/Employe_App/NotificationPage.dart';
+import 'package:alrazi_project/views/Employe_App/NotificationPages/NotificationPage.dart';
 import 'package:alrazi_project/views/Parent_App/AdvicePage.dart';
 import 'package:alrazi_project/views/Parent_App/ReportPage.dart';
 import 'package:alrazi_project/views/WelcomePage.dart';
@@ -16,7 +16,7 @@ class FamilyHome extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(EmpSingltoneNotification()) ;
+    EmpSingltoneNotification not_controller = Get.put(EmpSingltoneNotification()) ;
 
     return Directionality(
         textDirection: TextDirection.rtl,
@@ -62,8 +62,97 @@ class FamilyHome extends GetView<HomeController> {
                                   color: Colors.yellow,
                                 ),
                                 onPressed: () async{
-                                  await storage.deleteAll();
-                                  Get.off(WelcomePage());
+                                  Get.dialog(
+                                      Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child:  Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 40),
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(20),
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(20.0),
+                                                  child: Material(
+                                                    child: Column(
+                                                      children: [
+                                                        const SizedBox(height: 10),
+                                                        Text(
+                                                          "تسجيل الخروج",
+                                                          style: Themes.headline2,
+                                                          textAlign: TextAlign.center,
+
+                                                        ),
+                                                        Divider() ,
+                                                        const SizedBox(height: 15),
+                                                        const Text(
+                                                          "هل أنت متأكد من رغبتك في تسجيل الخروج ؟",
+                                                          textAlign: TextAlign.center,
+                                                        ),
+                                                        const SizedBox(height: 20),
+                                                        SizedBox(height: 20,) ,
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: ElevatedButton(
+                                                                child: const Text(
+                                                                  'تأكيد',
+                                                                ),
+                                                                style: ElevatedButton.styleFrom(
+                                                                  minimumSize: const Size(0, 45),
+                                                                  primary: Themes.secondary,
+                                                                  onPrimary: const Color(0xFFFFFFFF),
+                                                                  shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(8),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async{
+                                                                  await storage.deleteAll();
+                                                         //         not_controller.logout() ;
+                                                                  Get.off(WelcomePage());
+                                                                },
+                                                              ),
+                                                            ),
+                                                            const SizedBox(width: 10),
+
+                                                            Expanded(
+                                                              child: ElevatedButton(
+                                                                child:  Text(
+                                                                  'ليس بعد',style: Themes.bodyline1,
+                                                                ),
+                                                                style: ElevatedButton.styleFrom(
+                                                                  minimumSize: const Size(0, 45),
+                                                                  primary: Themes.orange2,
+                                                                  onPrimary: const Color(0xFFFFFFFF),
+                                                                  shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(8),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () {
+                                                                  Get.back() ;
+                                                                },
+                                                              ),
+                                                            ),
+
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                  );
+
                                 },
                               ),
                             ),
@@ -103,7 +192,7 @@ class FamilyHome extends GetView<HomeController> {
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Text(" الطفل" + '  ' + '${controller.name}')
+                                Text(" الطفل" + ' ' + '${controller.name}')
                               ],
                             ),
                           ),

@@ -53,6 +53,43 @@ class AppinmentPage extends StatelessWidget{
                         SizedBox(
                           height: 15,
                         ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            height: 35,
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            margin: EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              border: Border.all(
+                                  color: Colors.grey, style: BorderStyle.solid, width: 0.80),
+                            ),
+
+                            child: DropdownButton(
+
+                              items: controller.filter
+                                  .map((value) => DropdownMenuItem(
+                                child: Text(value , textDirection: TextDirection.rtl,),
+                                value: value,
+                              ))
+                                  .toList(),
+                              onChanged: (value) {
+                                controller.set_selected(value) ;
+                                controller.update_data();
+
+                              },
+                              isExpanded: false,
+                              value: controller.selected,
+                              borderRadius: BorderRadius.circular(20),
+                              icon: Icon(Icons.menu),
+                              autofocus: false ,
+                              iconSize: 20,
+
+                            ),
+                          ),
+                        ),
+
                         ListView.builder(
                             itemCount: controller.appoimentslist.length,
                             physics: NeverScrollableScrollPhysics(),
@@ -89,13 +126,13 @@ class AppinmentPage extends StatelessWidget{
                                         ],
                                       ),
                                       subtitle: Text(
-                                        "تم إعطاء موعد لطفلكم وذلك بتاريخ ${controller.appoimentslist.elementAt(i).app_date} ، وذلك في تمام الساعة ${controller.appoimentslist.elementAt(i).hours}   ",
+                                        "تم إعطاء موعد لطفلكم وذلك بتاريخ ${controller.appoimentslist.elementAt(i).app_date} ، وذلك في تمام الساعة ${controller.appoimentslist.elementAt(i).start_app}   ",
                                         style: Themes.bodyline1,
                                       ),
                                       trailing:  Wrap(
                                         spacing: 6, // space between two icons
                                         children: <Widget>[
-                                          IconButton(icon : Icon(Icons.details) , color: Themes.primary,onPressed: (){
+                                          IconButton(icon : Icon(Icons.remove_red_eye) , color: Themes.primary,onPressed: (){
 
                                             Get.dialog(
                                                 Directionality(

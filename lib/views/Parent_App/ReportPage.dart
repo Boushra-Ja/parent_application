@@ -30,7 +30,7 @@ class ReportPage extends StatelessWidget {
             );
           }
           return Container(
-            color: Themes.orange2,
+            color: Themes.white,
             child: ListView(
               children: [
                 SizedBox(
@@ -42,7 +42,7 @@ class ReportPage extends StatelessWidget {
                       decoration: new BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Themes.grey,
+                            color: Themes.grey.withOpacity(0.6),
                             blurRadius: 10.0,
                           ),
                         ],
@@ -69,14 +69,14 @@ class ReportPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                "القسم :  ${controller.var2}",
+                                "القسم :  ${controller.report.section}",
                                 style: Themes.bodyline1,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
-                                "شدة الاصابة : ${controller.var1}",
+                                "شدة الاصابة : ${controller.report.infection}",
                                 style: Themes.bodyline1,
                               ),
                             ],
@@ -89,7 +89,7 @@ class ReportPage extends StatelessWidget {
                       decoration: new BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Themes.grey,
+                            color: Themes.grey.withOpacity(0.6),
                             blurRadius: 10.0,
                           ),
                         ],

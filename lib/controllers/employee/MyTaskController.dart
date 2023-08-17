@@ -38,8 +38,8 @@ class MyTaskController extends GetxController {
         await http.get(Uri.parse('${MyApp.api}/api/employee/tasks/${id}'));
 
     if (response.statusCode == 200) {
-      TaskModel shopModel = TaskModel.fromJson(jsonDecode(response.body));
-      taskList.assignAll(shopModel.data);
+      TaskModel taskModel = TaskModel.fromJson(jsonDecode(response.body));
+      taskList.assignAll(taskModel.data);
 
       isLoading.value = false;
     } else {

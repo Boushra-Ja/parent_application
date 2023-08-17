@@ -1,5 +1,4 @@
 import 'package:alrazi_project/Themes/Theme.dart';
-import 'package:alrazi_project/controllers/employee/EmpLoginController.dart';
 import 'package:alrazi_project/views/Employe_App/LoginPage.dart';
 import 'package:alrazi_project/views/Employe_App/RegisterPage.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import '../WelcomePage.dart';
 
-class EmployeeLogin extends GetView<EmpLoginController> {
-  EmpLoginController controller = Get.put(EmpLoginController());
-  final _textController = TextEditingController();
+class EmployeeLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

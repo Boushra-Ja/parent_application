@@ -9,6 +9,11 @@ class TaskDetail extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    var timeInDecimal = task.start_double.toInt() + task.deliver_date ;
+    int hours = task.start_double.toInt() + task.deliver_date; // الساعات
+    int minutes = ((timeInDecimal - hours) * 60).toInt(); // الدقائق
+    int seconds = ((timeInDecimal - hours - (minutes / 60)) * 3600).toInt();
+    String timeString = "$hours:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
     return Directionality(textDirection: TextDirection.rtl, child: Scaffold(
 
       body: ListView(
@@ -52,9 +57,9 @@ class TaskDetail extends StatelessWidget{
                       SizedBox(height: 20,) ,
                       Text("تاريخ المهمة : ${task.task_date}"),
                       SizedBox(height: 20,) ,
-                      Text("تبدأ المهمة في الساعة : 1:00 "),
+                      Text("تبدأ المهمة في الساعة : ${task.start} "),
                       SizedBox(height: 20,) ,
-                      Text("الوقت المتوقع للإنجاز في الساعة : ${task.deliver_date}"),
+                      Text("الوقت المتوقع للإنجاز في الساعة : ${timeString}"),
                       SizedBox(height: 20,) ,
 
                     ],

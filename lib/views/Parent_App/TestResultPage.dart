@@ -19,9 +19,9 @@ class TestResultPaage extends StatelessWidget {
                 ClipPath(
                   clipper: MessageClipper(borderRadius: 30),
                   child: Container(
-                    height: 150,
+                    height: 100,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       color: Themes.secondary,
                     ),
                     child: Center(
@@ -52,81 +52,60 @@ class TestResultPaage extends StatelessWidget {
                         color: Colors.white,
                         padding: EdgeInsets.all(20.0),
                         child: Table(
+
                           border: TableBorder.all(color: Colors.black),
                           children: [
                             TableRow(children: [
-                              Text('البعد'),
-                              Text('العمر'),
-                              Text('النسبة'),
-                              Text('العمر الزمني'),
-                              Text('مستوى التأخر'),
+                              Text('البعد', textAlign: TextAlign.center),
+                              Text('العمر' ,textAlign: TextAlign.center ),
+                              Text('النسبة' , textAlign: TextAlign.center),
+                              Text('العمر الزمني' , textAlign: TextAlign.center),
+                              Text('مستوى التأخر' , textAlign: TextAlign.center),
                             ]),
                             TableRow(children: [
-                              Text(report.social.dimenssion , style: Themes.bodyline3,),
-                              Text('${report.social.age}' , style: Themes.bodyline3,),
-                              Text('${report.social.ratio}'  , style: Themes.bodyline3,),
-                              Text('${report.social.t_age}' , style: Themes.bodyline3,),
-                              Text('${report.social.level}'  , style: Themes.bodyline3,),
+                              Text(report.social.dimenssion , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.social.age}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.social.ratio}'  , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.social.t_age}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.social.level}'  , style: Themes.bodyline3,textAlign: TextAlign.center),
                             ]),
                             TableRow(children: [
-                              Text(report.monotor.dimenssion , style: Themes.bodyline3,),
-                              Text('${report.monotor.age}'  , style: Themes.bodyline3,),
-                              Text('${report.monotor.ratio}' , style: Themes.bodyline3,),
-                              Text('${report.monotor.t_age}' , style: Themes.bodyline3,),
-                              Text('${report.monotor.level}' , style: Themes.bodyline3,),
+                              Text(report.monotor.dimenssion , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.monotor.age}'  , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.monotor.ratio}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.monotor.t_age}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.monotor.level}' , style: Themes.bodyline3,textAlign: TextAlign.center),
                             ]),
                             TableRow(children: [
-                              Text(report.know.dimenssion , style: Themes.bodyline3,),
-                              Text('${report.know.age}', style: Themes.bodyline3,),
-                              Text('${report.know.ratio}' , style: Themes.bodyline3,),
-                              Text('${report.know.t_age}' , style: Themes.bodyline3,),
-                              Text('${report.know.level}' , style: Themes.bodyline3,),
+                              Text(report.know.dimenssion , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.know.age}', style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.know.ratio}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.know.t_age}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.know.level}' , style: Themes.bodyline3,textAlign: TextAlign.center),
                             ]),
                             TableRow(children: [
-                              Text(report.comm.dimenssion , style: Themes.bodyline3,),
-                              Text('${report.comm.age}' , style: Themes.bodyline3,),
-                              Text('${report.comm.ratio}', style: Themes.bodyline3,),
-                              Text('${report.comm.t_age}', style: Themes.bodyline3,),
-                              Text('${report.comm.level}', style: Themes.bodyline3,),
+                              Text(report.comm.dimenssion , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.comm.age}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.comm.ratio}', style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.comm.t_age}', style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.comm.level}', style: Themes.bodyline3,textAlign: TextAlign.center),
                             ]),
                             TableRow(children: [
-                              Text(report.care.dimenssion, style: Themes.bodyline3,),
-                              Text('${report.care.age}', style: Themes.bodyline3,),
-                              Text('${report.care.ratio}' , style: Themes.bodyline3,),
-                              Text('${report.care.t_age}' , style: Themes.bodyline3,),
-                              Text('${report.care.level}' , style: Themes.bodyline3,),
+                              Text(report.care.dimenssion, style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.care.age}', style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.care.ratio}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.care.t_age}' , style: Themes.bodyline3,textAlign: TextAlign.center),
+                              Text('${report.care.level}' , style: Themes.bodyline3,textAlign: TextAlign.center),
                             ])
                           ],
                         ),
                       )),
                 ),
                 SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Themes.grey,
-                        blurRadius: 10.0,
-                      ),
-                    ],
-                  ),
-                  margin: EdgeInsets.only(right: 10, left: 10, bottom: 15),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 1.0, vertical: 1),
-                    child: Container(
-                      color: Colors.white,
-                      padding: EdgeInsets.all(20.0),
-                      child: Text("لمحة وملاحظات وملخص عن النتيجة"),
-                    ),
-                  ),
-                ),
-                SizedBox(
                   height: 30,
                 ),
+
+
                 Center(
                   child:  Container(
                     margin: EdgeInsets.symmetric(horizontal: 8),
@@ -246,3 +225,27 @@ class Resault {
       : old_ratio = old_ratio,
         new_ratio = new_ratio;
 }
+
+/*
+  Container(
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Themes.grey,
+                        blurRadius: 10.0,
+                      ),
+                    ],
+                  ),
+                  margin: EdgeInsets.only(right: 10, left: 10, bottom: 15),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 1.0, vertical: 1),
+                    child: Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.all(20.0),
+                      child: Text("لمحة وملاحظات وملخص عن النتيجة"),
+                    ),
+                  ),
+                ),
+ */

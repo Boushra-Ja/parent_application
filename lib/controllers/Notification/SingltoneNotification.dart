@@ -70,6 +70,10 @@ class EmpSingltoneNotification  extends GetxController{
     EmpSingltoneNotification().subscribePusher();
   }
 
+  void logout()async{
+    EmpSingltoneNotification().disconnectPusher();
+
+  }
   @override
   void onInit() {
     inti();

@@ -36,14 +36,17 @@ class NotificationController extends GetxController{
     emp_id = await storage.read(key: 'id');
     token = await storage.read(key: 'token');
     rule = (await storage.read(key: 'role'))!;
-
+    print('dddddddddddddddddddddddddddddddd') ;
+    print(rule) ;
+    print('dddddddddddddddddddddddddddddddd') ;
     await fetch_notification();
   }
 
   @override
   void onInit() {
-    init() ;
     super.onInit();
+    init() ;
+
   }
 
   @override

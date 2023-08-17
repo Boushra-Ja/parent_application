@@ -48,6 +48,7 @@ class AllEmployees extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Container(
                 height: 35,
+                width: MediaQuery.of(context).size.width * 0.4,
                 margin: EdgeInsets.only(left: 10),
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
                 decoration: BoxDecoration(
@@ -57,13 +58,14 @@ class AllEmployees extends StatelessWidget {
                 ),
 
                 child: DropdownButton(
+
                   items: controller.filter
                       .map((value) => DropdownMenuItem(
-                    child: Text(value),
+                    child: Text(value , textDirection: TextDirection.rtl,),
                     value: value,
                   ))
                       .toList(),
-                  onChanged: ( value) {
+                  onChanged: (value) {
                     controller.set_selected(value) ;
                     if(controller.selected == 'الأكثر نقاطاً')
                       {
@@ -76,7 +78,7 @@ class AllEmployees extends StatelessWidget {
                   isExpanded: false,
                   value: controller.selected,
                   hint: Text("فلترة" , style: TextStyle(fontSize: 14),),
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(20),
                   icon: Icon(Icons.menu),
                   autofocus: false ,
                   iconSize: 20,
