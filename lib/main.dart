@@ -17,7 +17,7 @@ Future<void>  main()async {
 }
 
 class MyApp extends StatelessWidget {
-  static String api = "http://192.168.1.102:8000" ;
+  static String api = "http://192.168.1.105:8000" ;
 
   const MyApp({Key? key}) : super(key: key);
 

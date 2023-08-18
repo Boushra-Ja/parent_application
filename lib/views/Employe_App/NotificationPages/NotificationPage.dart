@@ -9,6 +9,7 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
@@ -36,7 +37,7 @@ class NotificationPage extends StatelessWidget {
                             MediaQuery.of(context).size.height * 0.4,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('images/no.png'),
+                                  image: AssetImage('images/1.jpg'),
                                   fit: BoxFit.contain),
                             ),
                           ),
@@ -56,6 +57,7 @@ class NotificationPage extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
 
+                              controller.move_page_deatils(index) ;
                             },
                             child: ListTile(
                                 shape: RoundedRectangleBorder(

@@ -1,13 +1,15 @@
-import 'package:alrazi_project/controllers/employee/BounsController.dart';
-import 'package:alrazi_project/views/Employe_App/NotificationPages/BounsNotificationPage.dart';
+import 'package:alrazi_project/views/Employe_App/NotificationPages/NotificationPage.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NotificationApi {
+class NotificationApi extends Bloc{
   static final FlutterLocalNotificationsPlugin _notifications =
   FlutterLocalNotificationsPlugin();
   static final onNotifications = BehaviorSubject<String?>();
+
+  NotificationApi() : super('');
 
   static Future _notificationDetails() async => const NotificationDetails(
       android: AndroidNotificationDetails(
@@ -32,13 +34,18 @@ class NotificationApi {
       onDidReceiveBackgroundNotificationResponse: (payload) async {
         onNotifications.add("bbb");
         print (payload);
-        navigateToNotificationDetails(payload);
-
+        await onSelectNotification(payload.toString());
 
       },
 
     );
   }
+  static Future<void> onSelectNotification(String payload) async {
+    print('dddddddddddddddd') ;
+    Get.to(NotificationPage() );
+
+  }
+
 
   static Future<void> showNotification({
     required int id,
@@ -56,10 +63,20 @@ class NotificationApi {
       );
 
 
-  static void navigateToNotificationDetails(var payload) {
 
-    print(payload) ;
-    Get.to(BounsNotificationPage()) ;
-
+  @override
+  Stream<String> mapEventToState(String event) async* {
+    // إذا تم استلام الإشعار في الخلفية
+    if (event.isNotEmpty) {
+      // انتقال إلى صفحة تفاصيل الإشعار وتمرير البيانات المطلوبة
+      Get.to(NotificationPage()) ;
+    }
+  }
+  // استلام الإشعارات وتنفيذ العملية في الخلفية
+  Future<void> onSelectNotification(String payload) async {
+    if (payload != null) {
+      // إرسال الإشعار إلى الـ Bloc لتنفيذ الانتقال إلى صفحة تفاصيل الإشعار
+      BlocProvider.of<NotificationBloc>(context).add(payload);
+    }
   }
 }

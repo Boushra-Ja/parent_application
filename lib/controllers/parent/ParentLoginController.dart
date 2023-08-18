@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:alrazi_project/controllers/HomeController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,8 @@ import 'package:http/http.dart' as http;
 import '../../main.dart';
 import '../../models/Child.dart';
 import '../../views/Parent_App/FamilyHome.dart';
+import '../../views/WelcomePage.dart';
+import '../Notification/SingltoneNotification.dart';
 
 class ParentLoginController extends GetxController{
   final storage = const FlutterSecureStorage();
@@ -66,6 +69,11 @@ class ParentLoginController extends GetxController{
       print('***********************');
       print(n ) ;
       print('***********************');
+      EmpSingltoneNotification e = Get.put(EmpSingltoneNotification()) ;
+      HomeController home = Get.put(HomeController()) ;
+      home.onInit() ;
+      e.onInit();
+
 
 
 

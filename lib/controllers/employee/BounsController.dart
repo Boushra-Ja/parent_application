@@ -10,13 +10,13 @@ class BounsController extends GetxController{
 
   static void  get_bouns_details()async{
 
-    Get.to(BounsNotificationPage()) ;
+    //Get.to(BounsNotificationPage()) ;
     final response =
         await http.get(Uri.parse('${MyApp.api}/api/details_ِbouns/1'));
 
     if(response.statusCode == 200)
       {
-        TaskPointModel taskPointModel = tableFromJson(response.body) ;
+        TaskPointModel taskPointModel = tableFromJson2(response.body) ;
         print("ddddddddddddddddddddddd") ;
         print(taskPointModel.data.task_name) ;
       }

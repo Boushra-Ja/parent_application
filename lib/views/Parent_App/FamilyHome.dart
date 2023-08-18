@@ -7,22 +7,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import '../../controllers/HomeController.dart';
+import '../../controllers/Notification/NotificationController.dart';
 import '../../controllers/Notification/SingltoneNotification.dart';
 import 'AppoinmentPage.dart';
 
 class FamilyHome extends GetView<HomeController> {
   final controller = Get.put(HomeController());
   final storage = const FlutterSecureStorage();
+  EmpSingltoneNotification not_controller = Get.put(EmpSingltoneNotification()) ;
 
   @override
   Widget build(BuildContext context) {
-    EmpSingltoneNotification not_controller = Get.put(EmpSingltoneNotification()) ;
 
     return Directionality(
         textDirection: TextDirection.rtl,
-        child: GetBuilder<HomeController>(
-            init: HomeController(),
-            builder: (controller) {
+        child: GetBuilder<EmpSingltoneNotification>(
+            init: EmpSingltoneNotification(),
+            builder: (_) {
               return DefaultTabController(
                 length: 3,
                 child: FutureBuilder(
@@ -50,6 +51,9 @@ class FamilyHome extends GetView<HomeController> {
                                   color: Colors.yellow,
                                 ),
                                 onPressed: () {
+
+                                  NotificationController n = Get.put(NotificationController()) ;
+                                  n.onInit();
                                   Get.to(NotificationPage());
                                 },
                               ),
@@ -114,7 +118,7 @@ class FamilyHome extends GetView<HomeController> {
                                                                 ),
                                                                 onPressed: () async{
                                                                   await storage.deleteAll();
-                                                         //         not_controller.logout() ;
+                                                                  not_controller.logout() ;
                                                                   Get.off(WelcomePage());
                                                                 },
                                                               ),

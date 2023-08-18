@@ -8,7 +8,6 @@ class AppoinmentNotificationPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl, child: Scaffold(
-      appBar: RoundedAppBar(),
       backgroundColor: Themes.grey,
       body: Container(
         width: MediaQuery.of(context).size.width,

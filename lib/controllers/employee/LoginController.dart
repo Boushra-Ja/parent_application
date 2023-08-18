@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:alrazi_project/controllers/Notification/SingltoneNotification.dart';
 import 'package:alrazi_project/models/Employee.dart';
 import 'package:alrazi_project/views/Employe_App/EmployeHome.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,8 @@ import 'package:get/get.dart';
 import '../../Themes/Theme.dart';
 import '../../main.dart';
 import 'package:http/http.dart' as http;
+
+import '../HomeController.dart';
 
 class LoginController extends GetxController{
 
@@ -53,6 +56,10 @@ class LoginController extends GetxController{
         print('***********************');
 
         isLoading.value = false;
+        EmpSingltoneNotification e = Get.put(EmpSingltoneNotification()) ;
+        HomeController home = Get.put(HomeController()) ;
+        home.onInit() ;
+        e.onInit() ;
         Get.to(EmployeHome()) ;
       }
       else{

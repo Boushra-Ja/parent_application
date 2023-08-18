@@ -4,6 +4,7 @@ class Notification{
 
   int id   ,  receiver_id ;
   String title ,message   ,created_at  ;
+  var type , need_id ;
 
   factory Notification.fromJson(Map<String , dynamic> json)
   {
@@ -13,12 +14,12 @@ class Notification{
 
     return Notification(id : json['id'] ,
         receiver_id : json['receiver_id']   , title : json['title'] ,
-        message : json['message'] , created_at : formattedDate,
+        message : json['message'] , created_at : formattedDate, type:json['type'],need_id:json['need_id']
     );
   }
 
   Notification({required this.id , required this.receiver_id  ,
-    required this.title , required this.message , required this.created_at
+    required this.title , required this.message , required this.created_at  ,required this.type , required this.need_id
   });
 
 }
